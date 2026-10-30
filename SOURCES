@@ -1,0 +1,24 @@
+# HCS Source Manifest
+
+| id | url | pin | license | integration |
+|---|---|---|---|---|
+| xz | https://github.com/tukaani-project/xz | TBD | 0BSD+LGPL2.1 | link |
+| 7zip-ppmd | https://www.7-zip.org/ | TBD | PD | copy-src |
+| srep | https://github.com/essencesh/srep | TBD | PD | copy-src |
+| preflate | https://github.com/deus-libri/preflate | TBD | Apache-2.0 | link |
+| preflate-rs | https://github.com/microsoft/preflate-rs | TBD | Apache-2.0 | link (alt) |
+| precomp | https://github.com/schnaader/precomp-cpp | TBD | Apache-2.0 | reference |
+| zpaq | https://github.com/zpaq/zpaq | TBD | PD | link |
+| libbsc | https://github.com/IlyaGrebnov/libbsc | TBD | Apache-2.0 | link |
+| packjpg | https://github.com/YadeWira/packJPG | TBD | LGPL-3 | external-process |
+| parmar | https://github.com/shallowbyte/parmar | TBD | TBD | copy-src |
+| bitshuffle | https://github.com/kiyo-masui/bitshuffle | TBD | BSD-3 | rewrite |
+| brotli | https://github.com/google/brotli | TBD | MIT | link |
+| zstd | https://github.com/facebook/zstd | TBD | BSD-3 | link |
+| lz4 | https://github.com/lz4/lz4 | TBD | BSD-2 | link |
+| zlib-ng | https://github.com/zlib-ng/zlib-ng | TBD | zlib | link |
+| libdeflate | https://github.com/ebiggers/libdeflate | TBD | MIT | link |
+| zopfli | https://github.com/google/zopfli | TBD | Apache-2.0 | link |
+| advancecomp | https://github.com/amadvance/advancecomp | TBD | GPL-3 | external-process |
+| freearc-c | https://github.com/seb3773/freearc-c | TBD | varies | copy-src |
+| freearc-next | https://github.com/Bulat-Ziganshin/FA | TBD | mixed | reference |
