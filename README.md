@@ -106,7 +106,7 @@ Grouped by role in a CHCE pipeline.
 |---|---|---|---|
 | `zxc` | Ultra-fast decode, better than LZ4 | MIT (verify) | `TBD` |
 | `density` | Ultra-fast LZ, near-memory-bandwidth decode | BSD-2 | `TBD` |
-| `csc` | LZMA-inspired fast LZ codec | MIT | `TBD` |
+| `csc` | LZMA-inspired fast LZ codec | MIT (verify) | `TBD` |
 | `lizard` | LZ4 fork with moderate-ratio tier | BSD-2 | `TBD` |
 | `brieflz` | Tiny LZ77 for constrained targets | zlib | `TBD` |
 | `snappy` | Google fast codec (benchmark baseline) | BSD-3 | `TBD` |
@@ -193,6 +193,33 @@ All other listed sources are permissive (MIT, BSD, Apache-2.0, zlib, PD,
 
 ---
 
+## 🏆 The Offline Ratio Ladder
+
+CHCE selects a tier per block based on the joint parser's cost model.
+This is the target performance envelope across the sources in `/old`:
+
+| Tier | Backend(s) | Ratio vs xz | Speed vs xz |
+|---|---|---|---|
+| **Max ratio** | `paq8px` / `LPAQ9` | 0.70–0.80× | 0.001× |
+| **High ratio** | `zpaqfranz -m5` / `zpaq` | 0.80–0.85× | 0.01× |
+| **Strong** | `bzip3` / `libbsc` / PPMd (`7z`) | 0.90–0.98× | 0.5–2× |
+| **Baseline** | `xz` (LZMA2) | 1.00× | 1.00× |
+| **Balanced** | `zxc` / `zstd -19` / `brotli -q11` | 1.05–1.15× | 3–10× |
+| **Fast** | `density` / `lz4` / `csc` / `lizard` | 1.3–1.5× | 20–50× |
+| **Ultra-fast** | `heatshrink` / `brieflz` / `snappy` | 2× | 100×+ |
+
+Plus these orthogonal transforms that operate **before** the entropy tier:
+
+- **Semantic recompression** — `preflate`, `preflate-rs`, `precomp-cpp`,
+  `aqueous`, `rhefo` (DEFLATE, JPEG, PNG, PDF, PE, SQLite, ~20 formats)
+- **Text tokenization** — `parmar` (+7–9.6 % on LZMA2 over raw text)
+- **Numeric bit-transpose** — `bitshuffle`, `pcodec` (2–10× on typed arrays)
+- **Short-string coding** — `shoco`, `smaz`
+- **Long-range dedup** — `srep` (matches beyond LZMA's 64 MB window)
+- **Executable packing** — `upx`, `zelf`
+
+---
+
 ## Bumping a Source
 
 1. `cd old/<source>` and check out the desired revision.
@@ -206,7 +233,7 @@ All other listed sources are permissive (MIT, BSD, Apache-2.0, zlib, PD,
 ## Adding a New Source
 
 1. `git clone --depth=1 <url> old/<id>` **inside this repo**.
-2. `rm -rf old/<id>/.git` — **critical**, do not skip.
+2. `rm -rf old/<id>/.git` — **critical, do not skip**.
 3. Add a row to `SOURCES.md`.
 4. Add the license text to `LICENSES/`.
 5. Add a row to the appropriate section of this README.
@@ -222,4 +249,3 @@ mistake when vendoring):
 ```bash
 find old -name .git -type d
 # should print nothing
-
