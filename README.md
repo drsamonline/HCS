@@ -249,3 +249,39 @@ mistake when vendoring):
 ```bash
 find old -name .git -type d
 # should print nothing
+
+## Vendored sources and submodules
+
+Most of `old/` is plain vendored source. 23 entries are **git submodules** — they
+pin one commit of an upstream repository rather than copying its history, so the
+mirror stays a mirror and HCS never claims authorship of code it did not write.
+
+```bash
+git clone --recurse-submodules https://github.com/drsamonline/HCS
+# or, in an existing clone:
+git submodule update --init --recursive
+```
+
+**Verify at any time:**
+
+```bash
+./scripts/check-vendor.sh          # exit 0 = every source present and mapped
+```
+
+### Why the guard exists
+
+Until this was fixed, `old/` carried those 23 gitlinks with **no `.gitmodules`
+file at all**. That state is unrecoverable: git records a commit SHA for each
+submodule but has nowhere to fetch it from, so `git submodule update --init`
+could not work, and every clone — HCS, and every repo that vendors a copy of it —
+silently got 23 empty directories. Nothing failed until a build or a benchmark
+reached for one of them, and then it looked like a missing source rather than a
+broken mirror.
+
+The repair was to add the URL mapping that was always missing (the recorded pins
+were all valid — 20 resolve by ref, and the remaining 3 fetch fine by SHA). The
+guard is the part that makes it not happen again: `scripts/check-vendor.sh` fails
+if any directory under `old/` is empty, if a gitlink has no `.gitmodules` entry,
+or if a `.gitmodules` entry points at a directory that does not exist. CI runs it
+on every push with `submodules: recursive`, so a mirror that cannot materialise
+goes red instead of going quiet.

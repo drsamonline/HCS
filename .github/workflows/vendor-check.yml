@@ -1,0 +1,38 @@
+name: vendor-check
+
+# Proves, on every push, that the vendored sources actually materialise.
+#
+# The failure this guards against is silent: `old/` once had 23 submodule
+# gitlinks and no `.gitmodules`, so every clone got 23 empty directories and
+# nothing failed until a build reached for one. Checking out with
+# `submodules: recursive` and then running the checker turns that silence into
+# a red build.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Every vendored source must be present and mapped
+        run: ./scripts/check-vendor.sh
+
+      - name: Report what is present
+        if: always()
+        run: |
+          echo "source directories with content:"
+          for d in old/*/; do
+            if [ -n "$(ls -A "$d" 2>/dev/null)" ]; then
+              echo "  OK    $(basename "$d")"
+            else
+              echo "  EMPTY $(basename "$d")"
+            fi
+          done

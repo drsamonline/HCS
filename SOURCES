@@ -146,3 +146,19 @@ Clone them with:
 git clone --depth=1 https://github.com/fusiyuan2010/CSC.git old/csc
 git clone --depth=1 https://github.com/nemequ/lzo.git        old/lzo
 rm -rf old/csc/.git old/lzo/.git
+
+---
+
+## Submodule entries
+
+23 rows above are `git submodule` entries, pinned by the commit SHA recorded in
+the tree and mapped to their upstream URL in `.gitmodules`. Materialise them with
+`git submodule update --init --recursive`, and verify with
+`./scripts/check-vendor.sh`.
+
+`pin` is `TBD` in the table because the authoritative pin is the gitlink SHA in
+the tree, not a value maintained by hand here. To read a pin:
+
+```bash
+git ls-tree HEAD old/ | awk '$1=="160000"{print $4, $3}'
+```
