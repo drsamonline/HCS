@@ -1,5 +1,7 @@
 # Holistic Compression Sources (HCS)
 
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-blue)](LICENSE)
+
 Canonical, offline, vendored source vault for the **CHCE** engine
 (Chimera Hybrid Compression Engine) and all CHIMERA-family projects
 (`heavenzip`, `ziptastic`, `compfactory`).
