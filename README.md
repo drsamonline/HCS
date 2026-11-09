@@ -19,7 +19,7 @@ from the pinned tree.
 2. **Single source of truth.** No submodules, no nested `.git` directories.
    All sources are vendored flat.
 3. **License-audited.** Every source is listed with its license in
-   `SOURCES.md` and full text in `LICENSES/`.
+   `SOURCES` and full text in `LICENSES/`.
 
 ---
 
@@ -225,7 +225,7 @@ Plus these orthogonal transforms that operate **before** the entropy tier:
 ## Bumping a Source
 
 1. `cd old/<source>` and check out the desired revision.
-2. Update the `pin` in `SOURCES.md`.
+2. Update the `pin` in `SOURCES`.
 3. Copy the license text into `LICENSES/<source>-<license>.txt`.
 4. Regenerate any integration tests in `ziptastic` that consume this source.
 5. Open a PR titled `bump: <source> → <new-sha>`.
@@ -236,7 +236,7 @@ Plus these orthogonal transforms that operate **before** the entropy tier:
 
 1. `git clone --depth=1 <url> old/<id>` **inside this repo**.
 2. `rm -rf old/<id>/.git` — **critical, do not skip**.
-3. Add a row to `SOURCES.md`.
+3. Add a row to `SOURCES`.
 4. Add the license text to `LICENSES/`.
 5. Add a row to the appropriate section of this README.
 6. Commit: `add: <id> (<role>)`.
@@ -268,7 +268,15 @@ git submodule update --init --recursive
 
 ```bash
 ./scripts/check-vendor.sh          # exit 0 = every source present and mapped
+python3 tools/check-sources.py     # exit 0 = every directory recorded, every id resolves
 ```
+
+The second one exists because the first never reads `SOURCES`. A directory can
+materialise and still have no recorded upstream, licence or integration, and an
+id can point at a directory name the vault does not use (`xz` for `xz-master`).
+`tools/check-sources.py` reads both sides and says which rows and which
+directories disagree. It runs in CI, advisory until the findings it currently
+reports are settled.
 
 ### Why the guard exists
 
