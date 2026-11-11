@@ -16,10 +16,14 @@ from the pinned tree.
 1. **Offline-only.** No neural networks, no model files, no GPU runtimes.
    Context-mixing (CM) compressors like `zpaq`, `paq8px`, `lpaq` are pure
    algorithms — they are **not AI** and are fully offline.
-2. **Single source of truth.** No submodules, no nested `.git` directories.
-   All sources are vendored flat.
-3. **License-audited.** Every source is listed with its license in
-   `SOURCES` and full text in `LICENSES/`.
+2. **Single source of truth.** One copy of each source, no nested `.git`
+   directories. Sources are vendored flat, with one deliberate exception: 23 of
+   them are **git submodules** pinned to an upstream commit, because copying
+   another project's history would make this vault a fork of it rather than a
+   mirror. See [Vendored sources and submodules](#vendored-sources-and-submodules).
+3. **License-audited.** Every source is listed with its licence identifier in
+   `SOURCES`. The full licence texts are **not yet collected** — see
+   [Known gaps](#known-gaps).
 
 ---
 
@@ -39,8 +43,9 @@ from the pinned tree.
 ## Repository Layout
 HCS/
 ├── README.md # this file
-├── SOURCES.md # machine-readable manifest (id, url, pin, license)
-├── LICENSES/ # one .txt per source (full license text)
+├── SOURCES # machine-readable manifest (id, url, pin, licence, integration)
+├── .gitmodules # URL mapping for the 23 pinned sources
+├── LICENSES/ # PLANNED: one .txt per source (see Known gaps)
 ├── old/ # vendored sources (the vault)
 │ ├── xz/
 │ ├── zpaq/
@@ -173,9 +178,11 @@ Grouped by role in a CHCE pipeline.
 | `FPAQF2` | PAQ-family derivative | verify | `TBD` |
 | `SR3A` | Experimental | verify | `TBD` |
 
-> "verify" = license text needs to be copied into `LICENSES/` before
-> integration. `TBD` in the pin column is replaced by a commit SHA the
-> first time the source is built against.
+> "verify" = the licence needs confirming against the source's own file before
+> integration. `LICENSES/` does not exist yet, so confirming means reading the
+> licence in the pinned tree and recording the result in this table — see
+> [Known gaps](#known-gaps). `TBD` in the pin column is replaced by a commit SHA
+> the first time the source is built against.
 
 ---
 
@@ -226,7 +233,9 @@ Plus these orthogonal transforms that operate **before** the entropy tier:
 
 1. `cd old/<source>` and check out the desired revision.
 2. Update the `pin` in `SOURCES`.
-3. Copy the license text into `LICENSES/<source>-<license>.txt`.
+3. Confirm the licence from the source's own `LICENSE`/`COPYING` file and correct
+   the `SOURCES` row if it moved. (`LICENSES/` is planned, not present — see
+   [Known gaps](#known-gaps).)
 4. Regenerate any integration tests in `ziptastic` that consume this source.
 5. Open a PR titled `bump: <source> → <new-sha>`.
 
@@ -237,7 +246,8 @@ Plus these orthogonal transforms that operate **before** the entropy tier:
 1. `git clone --depth=1 <url> old/<id>` **inside this repo**.
 2. `rm -rf old/<id>/.git` — **critical, do not skip**.
 3. Add a row to `SOURCES`.
-4. Add the license text to `LICENSES/`.
+4. Record the licence identifier in the `SOURCES` row. Full licence texts are
+   not collected yet — see [Known gaps](#known-gaps).
 5. Add a row to the appropriate section of this README.
 6. Commit: `add: <id> (<role>)`.
 
@@ -251,6 +261,11 @@ mistake when vendoring):
 ```bash
 find old -name .git -type d
 # should print nothing
+```
+
+(The 23 pinned submodules are the exception and are expected to carry `.git`;
+the check above is about *copied* sources.) The equivalent for the pins is
+`./scripts/check-vendor.sh`, below.
 
 ## Vendored sources and submodules
 
@@ -295,6 +310,25 @@ if any directory under `old/` is empty, if a gitlink has no `.gitmodules` entry,
 or if a `.gitmodules` entry points at a directory that does not exist. CI runs it
 on every push with `submodules: recursive`, so a mirror that cannot materialise
 goes red instead of going quiet.
+
+## Known gaps
+
+- **Licence texts.** `SOURCES` records an SPDX identifier and an integration
+  verdict per source, which is what `ziptastic` needs to decide whether a source
+  may be linked. The full texts are not in the repository: there is no
+  `LICENSES/`. Nothing in the tree is broken by this, but a downstream user
+  shipping a binary cannot audit a licence from this vault alone, and the
+  "copy the text before linking" rule has never had a directory to copy into.
+- **`MANIFEST.json`** records a producer and class per file for the files it
+  knows about, and was last written on 2026-11-04. It is not regenerated on
+  every push, so treat it as a snapshot rather than an index. `tools/manifest.py`
+  is what writes it.
+- **The HCS `LICENSE` is PolyForm Noncommercial 1.0.0**, which covers the files
+  this repository authors (the manifest, the catalogue, the tooling). The
+  vendored sources under `old/` keep their own licences, which are the ones that
+  govern them; the PolyForm terms cannot relicense code HCS did not write. That
+  distinction is worth stating plainly because the badge at the top of this file
+  reads as if it covers everything.
 
 ## Support
 
