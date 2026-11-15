@@ -30,13 +30,40 @@ INDEX = LIC / "INDEX.json"
 SOURCES = ROOT / "SOURCES"
 
 
+# Tables in SOURCES that are not claims about a vendored source. A row there is
+# prose about the manifest — "Pin provenance", "Licence corrections" — and its
+# first cell is not a source id.
+NOT_SOURCE_TABLES = {"Pin provenance", "Licence corrections", "Pending Additions",
+                     "Submodule entries"}
+
+SOURCE_ID = re.compile(r"^[A-Za-z0-9_.+-]+$")
+
+
+def section_key(section: str) -> str:
+    return re.sub(r"\s*\(.*\)\s*$", "", section).strip()
+
+
 def source_ids() -> list[str]:
-    ids, seen = [], set()
+    """Ids from the source tables only.
+
+    An earlier version read every table in the file, so adding a provenance table
+    made the checker report ids like `xz` — backticks included — as sources with no
+    licence entry. The id must be a bare token and the table must be a source
+    table.
+    """
+    ids, seen, section = [], set(), ""
     for line in SOURCES.read_text(encoding="utf-8", errors="replace").splitlines():
+        if line.startswith("## "):
+            section = line[3:].strip()
+            continue
+        if section_key(section) in NOT_SOURCE_TABLES:
+            continue
         if not line.startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) < 5 or cells[0] == "id" or set(cells[0]) <= set("-: "):
+            continue
+        if not SOURCE_ID.match(cells[0]):
             continue
         if cells[0] in seen:
             continue
