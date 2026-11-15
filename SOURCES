@@ -66,7 +66,6 @@ Columns:
 |---|---|---|---|---|
 | zxc | https://github.com/hellobertrand/zxc | TBD | verify | link |
 | density | https://github.com/centaurean/density | TBD | BSD-2-Clause | link |
-| csc | https://github.com/fusiyuan2010/CSC | TBD | verify | link |
 | lizard | https://github.com/inikep/lizard | TBD | BSD-2-Clause | link |
 | brieflz | https://github.com/jibsen/brieflz | TBD | zlib | link |
 | snappy | https://github.com/google/snappy | TBD | BSD-3-Clause | link |
@@ -125,11 +124,11 @@ Columns:
 
 | id | url | pin | license | integration |
 |---|---|---|---|---|
-| BARF | (fill in) | TBD | verify | reference |
-| BBB | (fill in) | TBD | verify | reference |
-| FLZP | (fill in) | TBD | verify | reference |
-| FPAQF2 | (fill in) | TBD | verify | reference |
-| SR3A | (fill in) | TBD | verify | reference |
+| BARF | http://cs.fit.edu/~mmahoney/compression/ | TBD | GPL | reference |
+| BBB | unknown | TBD | GPL | reference |
+| FLZP | unknown | TBD | GPL-3.0-or-later | reference |
+| FPAQF2 | unknown | TBD | GPL | reference |
+| SR3A | http://cs.fit.edu/~mmahoney/compression/text.html | TBD | GPL-2.0-or-later | reference |
 
 ---
 
@@ -166,6 +165,23 @@ git ls-tree HEAD old/ | awk '$1=="160000"{print $4, $3}'
 ---
 
 ## Licence corrections
+
+Verdicts below were read from the vendored tree on 15 Nov 2026, not from an
+upstream page. `LICENSES/sources/<id>-HEADER.txt` holds the quoted text.
+
+| id | was | is | why |
+|---|---|---|---|
+| `BARF` | `verify` | `GPL` | `old/BARF/barf.cpp` header: "This is free software and may be copied, modified, and distributed under the GNU General Public License, http://www.gnu.org/licenses/gpl.txt" — no version stated, so no version is claimed |
+| `BBB` | `verify` | `GPL` | `old/BBB/bbb.cpp`: "This is free software under GPL" — no version stated |
+| `FPAQF2` | `verify` | `GPL` | `old/FPAQF2/fpaq0f2.cpp`: "(C) 2008, Matt Mahoney under GPL" — no version stated |
+| `FLZP` | `verify` | `GPL-3.0-or-later` | `old/FLZP` header: "either version 3 of the License, or (at your option) any later version" |
+| `SR3A` | `verify` | `GPL-2.0-or-later` | `old/SR3A/sr3a.cpp`: "either version 2 of the License, or (at your option) any later version" |
+| `csc` | listed in Fast / Asymmetric | row removed | nothing is vendored under `old/csc`; the clone instructions stay in Pending Additions |
+
+`unknown` in the url column means the tree records no upstream and the host it
+would live on is not reachable from this machine to confirm one. It is not a
+guess at a URL.
+
 
 | id | was | is | why |
 |---|---|---|---|

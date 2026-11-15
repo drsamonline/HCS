@@ -30,6 +30,7 @@ UPSTREAM_NAMES = ["LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING", "COPYING.tx
 TOKENS = {
     "0BSD": "0BSD", "LGPL-2.1": "LGPL-2.1-only", "LGPL-3.0": "LGPL-3.0-only",
     "GPL-2.0": "GPL-2.0-only", "GPL-3.0": "GPL-3.0-only",
+    "GPL-2.0-or-later": "GPL-2.0-or-later", "GPL-3.0-or-later": "GPL-3.0-or-later",
     "Apache-2.0": "Apache-2.0", "MIT": "MIT", "MIT-0": "MIT-0",
     "BSD-2-Clause": "BSD-2-Clause", "BSD-3-Clause": "BSD-3-Clause",
     "ISC": "ISC", "zlib": "Zlib", "MPL-2.0": "MPL-2.0",

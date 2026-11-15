@@ -31,11 +31,23 @@
    "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
    "source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/GPL-2.0-only.txt"
   },
+  "GPL-2.0-or-later": {
+   "file": "GPL-2.0-or-later.txt",
+   "bytes": 17337,
+   "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+   "source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/GPL-2.0-or-later.txt"
+  },
   "GPL-3.0-only": {
    "file": "GPL-3.0-only.txt",
    "bytes": 34674,
    "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0",
    "source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/GPL-3.0-only.txt"
+  },
+  "GPL-3.0-or-later": {
+   "file": "GPL-3.0-or-later.txt",
+   "bytes": 34674,
+   "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0",
+   "source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/GPL-3.0-or-later.txt"
   },
   "ISC": {
    "file": "ISC.txt",
@@ -664,25 +676,6 @@
      "origin": "old/density/LICENSE-MIT",
      "bytes": 1022,
      "sha256": "30fefc3a7d6a0041541858293bcbea2dde4caa4c0a5802f996a7f7e8c0085652"
-    }
-   ]
-  },
-  {
-   "id": "csc",
-   "url": "https://github.com/fusiyuan2010/CSC",
-   "declared": "verify",
-   "spdx": [],
-   "flags": [
-    "verify"
-   ],
-   "vendored_dir": null,
-   "status": "collected from upstream HEAD",
-   "evidence": [
-    {
-     "file": "sources/csc-LICENSE",
-     "origin": "https://raw.githubusercontent.com/fusiyuan2010/CSC/HEAD/LICENSE",
-     "bytes": 1211,
-     "sha256": "60d2c28d19d2bdf7bbaa59829e7a595234265e8111a01ccb74d25d6c4d2d013a"
     }
    ]
   },
@@ -1468,11 +1461,11 @@
   },
   {
    "id": "BARF",
-   "url": "(fill in)",
-   "declared": "verify",
+   "url": "http://cs.fit.edu/~mmahoney/compression/",
+   "declared": "GPL",
    "spdx": [],
    "flags": [
-    "verify"
+    "gpl"
    ],
    "vendored_dir": "BARF",
    "status": "collected from a source-file header",
@@ -1488,11 +1481,11 @@
   },
   {
    "id": "BBB",
-   "url": "(fill in)",
-   "declared": "verify",
+   "url": "unknown",
+   "declared": "GPL",
    "spdx": [],
    "flags": [
-    "verify"
+    "gpl"
    ],
    "vendored_dir": "BBB",
    "status": "collected from a source-file header",
@@ -1508,12 +1501,12 @@
   },
   {
    "id": "FLZP",
-   "url": "(fill in)",
-   "declared": "verify",
-   "spdx": [],
-   "flags": [
-    "verify"
+   "url": "unknown",
+   "declared": "GPL-3.0-or-later",
+   "spdx": [
+    "GPL-3.0-or-later"
    ],
+   "flags": [],
    "vendored_dir": "FLZP",
    "status": "collected from a source-file header",
    "evidence": [
@@ -1528,11 +1521,11 @@
   },
   {
    "id": "FPAQF2",
-   "url": "(fill in)",
-   "declared": "verify",
+   "url": "unknown",
+   "declared": "GPL",
    "spdx": [],
    "flags": [
-    "verify"
+    "gpl"
    ],
    "vendored_dir": "FPAQF2",
    "status": "collected from a source-file header",
@@ -1548,12 +1541,12 @@
   },
   {
    "id": "SR3A",
-   "url": "(fill in)",
-   "declared": "verify",
-   "spdx": [],
-   "flags": [
-    "verify"
+   "url": "http://cs.fit.edu/~mmahoney/compression/text.html",
+   "declared": "GPL-2.0-or-later",
+   "spdx": [
+    "GPL-2.0-or-later"
    ],
+   "flags": [],
    "vendored_dir": "SR3A",
    "status": "collected from a source-file header",
    "evidence": [
@@ -1563,6 +1556,25 @@
      "bytes": 1745,
      "sha256": "289eab7ad6b737d2f1aa6fdcd45885ff1e8e0af1ef6df8075836dc7015bf4638",
      "note": "copyright/licence header from a vendored source file"
+    }
+   ]
+  },
+  {
+   "id": "csc",
+   "url": "https://github.com/fusiyuan2010/CSC",
+   "declared": "verify",
+   "spdx": [],
+   "flags": [
+    "verify"
+   ],
+   "vendored_dir": null,
+   "status": "collected from upstream HEAD",
+   "evidence": [
+    {
+     "file": "sources/csc-LICENSE",
+     "origin": "https://raw.githubusercontent.com/fusiyuan2010/CSC/HEAD/LICENSE",
+     "bytes": 1211,
+     "sha256": "60d2c28d19d2bdf7bbaa59829e7a595234265e8111a01ccb74d25d6c4d2d013a"
     }
    ]
   }
