@@ -43,7 +43,6 @@ listed below with the reason; they are not silently treated as licensed.
 | `bitshuffle` | MIT | [MIT](MIT.txt) | `bitshuffle-LICENSE`, `bitshuffle-LICENSE-2`, `bitshuffle-LICENSE.txt` | collected from vendored tree |
 | `zxc` | verify | — | `zxc-LICENSE` | collected from vendored tree |
 | `density` | BSD-2-Clause | [BSD-2-Clause](BSD-2-Clause.txt) | `density-LICENSE-APACHE`, `density-LICENSE-MIT` | collected from vendored tree |
-| `csc` | verify | — | `csc-LICENSE` | collected from upstream HEAD |
 | `lizard` | BSD-2-Clause | [BSD-2-Clause](BSD-2-Clause.txt) | `lizard-LICENSE`, `lizard-LICENSE-2`, `lizard-LICENSE-3`, `lizard-COPYING`, `lizard-COPYING-2` | collected from vendored tree |
 | `brieflz` | zlib | [Zlib](Zlib.txt) | `brieflz-LICENSE` | collected from vendored tree |
 | `snappy` | BSD-3-Clause | [BSD-3-Clause](BSD-3-Clause.txt) | `snappy-COPYING`, `snappy-COPYING.notestdata`, `snappy-LICENSE`, `snappy-LICENSE-2` | collected from vendored tree |
@@ -67,11 +66,12 @@ listed below with the reason; they are not silently treated as licensed.
 | `heatshrink` | ISC | [ISC](ISC.txt) | `heatshrink-LICENSE` | collected from vendored tree |
 | `awesome-compopt` | CC | — | `awesome-compopt-LICENSE` | collected from vendored tree |
 | `awesome-cpp` | CC | — | `awesome-cpp-LICENSE` | collected from vendored tree |
-| `BARF` | verify | — | `BARF-HEADER.txt` | collected from a source-file header |
-| `BBB` | verify | — | `BBB-HEADER.txt` | collected from a source-file header |
-| `FLZP` | verify | — | `FLZP-HEADER.txt` | collected from a source-file header |
-| `FPAQF2` | verify | — | `FPAQF2-HEADER.txt` | collected from a source-file header |
-| `SR3A` | verify | — | `SR3A-HEADER.txt` | collected from a source-file header |
+| `BARF` | GPL | — | `BARF-HEADER.txt` | collected from a source-file header |
+| `BBB` | GPL | — | `BBB-HEADER.txt` | collected from a source-file header |
+| `FLZP` | GPL-3.0-or-later | [GPL-3.0-or-later](GPL-3.0-or-later.txt) | `FLZP-HEADER.txt` | collected from a source-file header |
+| `FPAQF2` | GPL | — | `FPAQF2-HEADER.txt` | collected from a source-file header |
+| `SR3A` | GPL-2.0-or-later | [GPL-2.0-or-later](GPL-2.0-or-later.txt) | `SR3A-HEADER.txt` | collected from a source-file header |
+| `csc` | verify | — | `csc-LICENSE` | collected from upstream HEAD |
 
 ## What is still open
 
