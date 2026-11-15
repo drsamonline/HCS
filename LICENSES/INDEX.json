@@ -495,14 +495,22 @@
   {
    "id": "LPAQ9",
    "url": "http://mattmahoney.net/dc/lpaq9.zip",
-   "declared": "Public-Domain",
-   "spdx": [],
-   "flags": [
-    "public-domain"
+   "declared": "GPL-2.0",
+   "spdx": [
+    "GPL-2.0-only"
    ],
+   "flags": [],
    "vendored_dir": "LPAQ9",
-   "status": "no vendored licence file; not a GitHub URL, not fetched",
-   "evidence": []
+   "status": "recorded from the maintainer's statement; no text in the vault",
+   "evidence": [
+    {
+     "file": "sources/LPAQ9-OWNER-STATEMENT.txt",
+     "origin": "maintainer statement, 15 Nov 2026",
+     "bytes": 573,
+     "sha256": "40c317967c6ee7000c3e1faeba2f4a01503dacae78e4a5c6953e65220a16d0da",
+     "note": "no licence text in the vault; recorded as GPL-2.0"
+    }
+   ]
   },
   {
    "id": "omnizip-zpaq",
