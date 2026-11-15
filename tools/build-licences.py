@@ -149,6 +149,25 @@ HEADER_HINT = re.compile(r"(copyright|licen[cs]e|public domain|all rights reserv
 # Files whose header is the project's own licence statement, where the file name
 # does not carry the source id. Chosen by hand, one per source, and named here so
 # the choice is reviewable rather than hidden in a heuristic.
+# Licences the vault cannot establish from a text because the vendored copy has
+# none, recorded on the owner's statement instead. Kept separate from collected
+# evidence: a statement is a fact about provenance, not a licence text, and the
+# record says which one it is.
+OWNER_STATED = {
+    "LPAQ9": (
+        "GPL-2.0",
+        "The vendored copy is `lpaq9m.zpaq`, a binary archive containing no source\n"
+        "and no licence notice, and `SOURCES` records only a zip URL this vault does\n"
+        "not mirror. The licence is recorded on the maintainer's statement of\n"
+        "15 November 2026 that LPAQ carries the same licence as paq8, which\n"
+        "`SOURCES` records as GPL-2.0.\n\n"
+        "This file is a record of where the claim comes from, not the licence text.\n"
+        "The text is `LICENSES/GPL-2.0-only.txt`, and it applies if the statement is\n"
+        "right. If the upstream archive is ever fetched and its readme read, replace\n"
+        "this file with what it says.\n"
+    ),
+}
+
 HEADER_OVERRIDES = {
     "lzma":    "old/lzma/C/LzmaDec.c",
     "FPAQF2":  "old/FPAQF2/fpaq0f2.cpp",
@@ -265,6 +284,17 @@ def main():
                                  "bytes": len(b), "sha256": sha(b)})
             if evidence:
                 status = "collected from vendored tree"
+
+        # fallback: a licence recorded on the owner's statement
+        if not evidence and r["id"] in OWNER_STATED:
+            licence, note = OWNER_STATED[r["id"]]
+            name = f"sources/{r['id']}-OWNER-STATEMENT.txt"
+            (OUT / name).write_text(note, encoding="utf-8")
+            evidence.append({"file": name,
+                             "origin": "maintainer statement, 15 Nov 2026",
+                             "bytes": len(note), "sha256": sha(note.encode()),
+                             "note": f"no licence text in the vault; recorded as {licence}"})
+            status = "recorded from the maintainer's statement; no text in the vault"
 
         # fallback: a licence section in the source's own README
         if not evidence and d:
