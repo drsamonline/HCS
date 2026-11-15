@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Licence texts are hashed byte for byte in LICENSES/INDEX.json and re-checked by
+# tools/check-licences.py. Any end-of-line normalisation would change the digest
+# and fail the gate, so these files are stored exactly as they were collected.
+LICENSES/** -text
