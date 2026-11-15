@@ -31,6 +31,7 @@ TOKENS = {
     "0BSD": "0BSD", "LGPL-2.1": "LGPL-2.1-only", "LGPL-3.0": "LGPL-3.0-only",
     "GPL-2.0": "GPL-2.0-only", "GPL-3.0": "GPL-3.0-only",
     "GPL-2.0-or-later": "GPL-2.0-or-later", "GPL-3.0-or-later": "GPL-3.0-or-later",
+    "SSPL-1.0": "SSPL-1.0",
     "Apache-2.0": "Apache-2.0", "MIT": "MIT", "MIT-0": "MIT-0",
     "BSD-2-Clause": "BSD-2-Clause", "BSD-3-Clause": "BSD-3-Clause",
     "ISC": "ISC", "zlib": "Zlib", "MPL-2.0": "MPL-2.0",
@@ -78,15 +79,36 @@ def sha(b):
     return hashlib.sha256(b).hexdigest()
 
 
+# Tables in SOURCES that are prose about the manifest, not claims about a vendored
+# source. Same rule as check-licences.py: without it, a row like
+# `| \`freearc-c\` | \`verify\` | \`GPL-2.0\` | … |` in Licence corrections is read
+# as a source named with its backticks still attached. Both scripts carry this
+# filter because they are run independently; if a third appears, move it into one.
+NOT_SOURCE_TABLES = {"Pin provenance", "Licence corrections", "Pending Additions",
+                     "Submodule entries"}
+SOURCE_ID = re.compile(r"^[A-Za-z0-9_.+-]+$")
+
+
+def section_key(section: str) -> str:
+    return re.sub(r"\s*\(.*\)\s*$", "", section).strip()
+
+
 def parse_sources():
-    rows, seen = [], set()
+    rows, seen, section = [], set(), ""
     for line in (HCS / "SOURCES").read_text(encoding="utf-8", errors="replace").splitlines():
+        if line.startswith("## "):
+            section = line[3:].strip()
+            continue
+        if section_key(section) in NOT_SOURCE_TABLES:
+            continue
         if not line.startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) < 5:
             continue
         if cells[0] in ("id",) or set(cells[0]) <= set("-: "):
+            continue
+        if not SOURCE_ID.match(cells[0]):
             continue
         if cells[0] in seen:
             continue
