@@ -54,6 +54,20 @@ def read_manifest():
     return rows
 
 
+def read_pins():
+    """[(section, id, pin)] — the pin column, which the other readers ignore."""
+    out, section = [], ""
+    with open(SOURCES, encoding="utf-8") as fh:
+        for line in fh:
+            if line.startswith("## "):
+                section = line[3:].strip()
+                continue
+            m = ROW.match(line.rstrip("\n"))
+            if m and m.group(1) != "id" and set(m.group(1)) != {"-"}:
+                out.append((section, m.group(1), m.group(3)))
+    return out
+
+
 def resolve_all(rows, dirs):
     """Map every SOURCES id to a directory, and say which directories are left.
 
@@ -108,6 +122,19 @@ def main():
         if ident not in resolved:
             problems.append(f"SOURCES lists {ident!r} but old/ has no such directory "
                             f"(no exact match and no {ident}-* match)")
+
+    # A row must say what is actually vendored: a commit SHA for a submodule,
+    # `copy` for a tree that was copied in, `unvendored` for a queued row. `TBD`
+    # means nobody knows, which is the state this column was in for every row.
+    for section, ident, pin in read_pins():
+        if section_key(section) in NOT_ENFORCED:
+            continue
+        if pin == "TBD":
+            problems.append(f"SOURCES row {ident!r} has pin TBD — record the submodule "
+                            f"commit, or `copy`, or `unvendored`")
+        elif pin not in ("copy", "unvendored") and not re.fullmatch(r"[0-9a-f]{40}", pin):
+            problems.append(f"SOURCES row {ident!r} has pin {pin!r}, which is neither a "
+                            f"40-character commit SHA nor `copy`/`unvendored`")
 
     for d in unrecorded:
         problems.append(f"old/{d} is vendored but has no SOURCES row "
