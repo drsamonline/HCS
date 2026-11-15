@@ -50,6 +50,7 @@ from the pinned tree.
 HCS/
 ├── README.md # this file
 ├── SOURCES # machine-readable manifest (id, url, pin, licence, integration)
+├── NOTICE # whose work is inside, under what terms, and what is unresolved
 ├── .gitmodules # URL mapping for the 23 pinned sources
 ├── LICENSES/ # SPDX texts + per-source notices; INDEX.json records provenance
 ├── old/ # vendored sources (the vault)
