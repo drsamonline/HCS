@@ -24,8 +24,12 @@ from the pinned tree.
    another project's history would make this vault a fork of it rather than a
    mirror. See [Vendored sources and submodules](#vendored-sources-and-submodules).
 3. **License-audited.** Every source is listed with its licence identifier in
-   `SOURCES`. The full licence texts are **not yet collected** — see
-   [Known gaps](#known-gaps).
+   `SOURCES`, and `LICENSES/` carries the texts: the canonical SPDX text for each
+   identifier, plus the notice as it actually ships with the source. Every file
+   in there records where it came from and its SHA-256 in `LICENSES/INDEX.json`,
+   and `tools/check-licences.py` fails the build if a text goes missing or
+   changes without the record. One source (`LPAQ9`) is still unresolved and says
+   so rather than being assumed licensed.
 
 ---
 
@@ -47,7 +51,7 @@ HCS/
 ├── README.md # this file
 ├── SOURCES # machine-readable manifest (id, url, pin, licence, integration)
 ├── .gitmodules # URL mapping for the 23 pinned sources
-├── LICENSES/ # PLANNED: one .txt per source (see Known gaps)
+├── LICENSES/ # SPDX texts + per-source notices; INDEX.json records provenance
 ├── old/ # vendored sources (the vault)
 │ ├── xz/
 │ ├── zpaq/
@@ -181,10 +185,11 @@ Grouped by role in a CHCE pipeline.
 | `SR3A` | Experimental | verify | `TBD` |
 
 > "verify" = the licence needs confirming against the source's own file before
-> integration. `LICENSES/` does not exist yet, so confirming means reading the
-> licence in the pinned tree and recording the result in this table — see
-> [Known gaps](#known-gaps). `TBD` in the pin column is replaced by a commit SHA
-> the first time the source is built against.
+> integration. `LICENSES/sources/` now holds the notice that ships with each
+> source, and `LICENSES/README.md` shows it beside the identifier `SOURCES`
+> claims, so confirming means reading one file and recording the result in this
+> table — see [Known gaps](#known-gaps). `TBD` in the pin column is replaced by a
+> commit SHA the first time the source is built against.
 
 ---
 
@@ -236,8 +241,10 @@ Plus these orthogonal transforms that operate **before** the entropy tier:
 1. `cd old/<source>` and check out the desired revision.
 2. Update the `pin` in `SOURCES`.
 3. Confirm the licence from the source's own `LICENSE`/`COPYING` file and correct
-   the `SOURCES` row if it moved. (`LICENSES/` is planned, not present — see
-   [Known gaps](#known-gaps).)
+   the `SOURCES` row if it moved. Then regenerate the licence record:
+   `python3 tools/build-licences.py && python3 tools/check-licences.py`. The
+   checker fails if a source in `SOURCES` has no entry in `LICENSES/INDEX.json`,
+   so a bump that changes the licence cannot pass silently.
 4. Regenerate any integration tests in `ziptastic` that consume this source.
 5. Open a PR titled `bump: <source> → <new-sha>`.
 
@@ -315,12 +322,13 @@ goes red instead of going quiet.
 
 ## Known gaps
 
-- **Licence texts.** `SOURCES` records an SPDX identifier and an integration
-  verdict per source, which is what `ziptastic` needs to decide whether a source
-  may be linked. The full texts are not in the repository: there is no
-  `LICENSES/`. Nothing in the tree is broken by this, but a downstream user
-  shipping a binary cannot audit a licence from this vault alone, and the
-  "copy the text before linking" rule has never had a directory to copy into.
+- **One licence text is still unresolved.** 52 of 53 sources carry evidence in
+  `LICENSES/`. `LPAQ9` does not: the vendored copy is `lpaq9m.zpaq`, a binary
+  archive with no source and no notice in it, and `SOURCES` gives only a zip URL
+  that this vault does not mirror. Its `Public-Domain` verdict is therefore
+  unverified — treat it as unknown until someone fetches the upstream archive and
+  reads its README. `LICENSES/README.md` lists it under "What is still open" and
+  `tools/check-licences.py` prints it on every run.
 - **`MANIFEST.json`** records a producer and class per file for the files it
   knows about, and was last written on 2026-11-04. It is not regenerated on
   every push, so treat it as a snapshot rather than an index. `tools/manifest.py`

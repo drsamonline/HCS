@@ -36,6 +36,12 @@ jobs:
         # those are settled.
         run: python3 tools/check-sources.py --advisory
 
+      - name: LICENSES must match the sources it describes
+        # Every file in LICENSES/INDEX.json is re-hashed, every id in SOURCES must
+        # have an entry, and every SPDX identifier used must have its text. A
+        # notice edited or deleted without the record moving fails here.
+        run: python3 tools/check-licences.py
+
       - name: Report what is present
         if: always()
         run: |
