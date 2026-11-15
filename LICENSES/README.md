@@ -12,7 +12,7 @@ Two kinds of file:
   copied verbatim from the vendored tree under `old/` where one exists,
   otherwise fetched from the upstream repository at HEAD.
 
-Collected: 52 of 53 sources. Unresolved rows are
+Collected: 53 of 53 sources. Unresolved rows are
 listed below with the reason; they are not silently treated as licensed.
 
 ## Sources
@@ -35,7 +35,7 @@ listed below with the reason; they are not silently treated as licensed.
 | `zpaq` | Public-Domain | — | `zpaq-COPYING` | collected from vendored tree |
 | `zpaqfranz` | PD+GPL | — | `zpaqfranz-COPYING`, `zpaqfranz-LICENSE`, `zpaqfranz-LICENSE-2`, `zpaqfranz-LICENSE-3` | collected from vendored tree |
 | `paq8px` | GPL-2.0 | [GPL-2.0-only](GPL-2.0-only.txt) | `paq8px-README-licence.txt` | collected from the source's README licence section |
-| `LPAQ9` | Public-Domain | — | — | no vendored licence file; not a GitHub URL, not fetched |
+| `LPAQ9` | GPL-2.0 | [GPL-2.0-only](GPL-2.0-only.txt) | `LPAQ9-OWNER-STATEMENT.txt` | recorded from the maintainer's statement; no text in the vault |
 | `omnizip-zpaq` | verify | — | `omnizip-zpaq-LICENSE-APACHE`, `omnizip-zpaq-LICENSE-MIT`, `omnizip-zpaq-LICENSE-NOTICE.md` | collected from vendored tree |
 | `libbsc` | Apache-2.0 | [Apache-2.0](Apache-2.0.txt) | `libbsc-LICENSE`, `libbsc-LICENSE-2`, `libbsc-LICENSE-3` | collected from vendored tree |
 | `bzip3` | Apache-2.0 | [Apache-2.0](Apache-2.0.txt) | `bzip3-LICENSE` | collected from vendored tree |
@@ -75,4 +75,3 @@ listed below with the reason; they are not silently treated as licensed.
 
 ## What is still open
 
-- `LPAQ9` — no vendored licence file; not a GitHub URL, not fetched (http://mattmahoney.net/dc/lpaq9.zip).
