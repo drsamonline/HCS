@@ -55,7 +55,7 @@ Columns:
 | zpaq | https://github.com/zpaq/zpaq | copy | Public-Domain | link |
 | zpaqfranz | https://github.com/fcorbelli/zpaqfranz | c16ce5b667379208e3cae67e60051e12834fc40b | PD+GPL | link |
 | paq8px | https://github.com/hxim/paq8px | c84f576fc2c522194cd320743708652a154daf6b | GPL-2.0 | external-process |
-| LPAQ9 | http://mattmahoney.net/dc/lpaq9.zip | copy | Public-Domain | external-process |
+| LPAQ9 | http://mattmahoney.net/dc/lpaq9.zip | copy | GPL-2.0 | external-process |
 | omnizip-zpaq | https://github.com/omnizip/omnizip-rs | ae3a229fe96380280170e6be67de8d4f6193b1a9 | verify | reference |
 
 ## BWT
@@ -188,6 +188,7 @@ upstream page. `LICENSES/sources/<id>-HEADER.txt` holds the quoted text.
 | `FPAQF2` | `verify` | `GPL` | `old/FPAQF2/fpaq0f2.cpp`: "(C) 2008, Matt Mahoney under GPL" — no version stated |
 | `FLZP` | `verify` | `GPL-3.0-or-later` | `old/FLZP` header: "either version 3 of the License, or (at your option) any later version" |
 | `SR3A` | `verify` | `GPL-2.0-or-later` | `old/SR3A/sr3a.cpp`: "either version 2 of the License, or (at your option) any later version" |
+| `LPAQ9` | `Public-Domain` | `GPL-2.0` | The vendored copy is `lpaq9m.zpaq`, a binary archive with no source and no notice in it, so the vault cannot establish this from a text. Recorded on the maintainer's statement (15 Nov 2026) that LPAQ carries the same licence as paq8 — which `SOURCES` records as `GPL-2.0`. `LICENSES/sources/LPAQ9-OWNER-STATEMENT.txt` records what was stated and that no text is present |
 | `csc` | listed in Fast / Asymmetric | row removed | nothing is vendored under `old/csc`; the clone instructions stay in Pending Additions |
 
 `unknown` in the url column means the tree records no upstream and the host it
