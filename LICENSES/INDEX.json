@@ -422,6 +422,25 @@
    ]
   },
   {
+   "id": "freearc-067",
+   "url": "https://github.com/despawnerer/freearc",
+   "declared": "mixed",
+   "spdx": [],
+   "flags": [
+    "mixed"
+   ],
+   "vendored_dir": "freearc-067",
+   "status": "collected from vendored tree",
+   "evidence": [
+    {
+     "file": "sources/freearc-067-LICENSE",
+     "origin": "old/freearc-067/clibs/Compression/_TABI/LICENSE",
+     "bytes": 1472,
+     "sha256": "e0d048e8918b535dcb9fdd76a2dc7f7557a70dc684b0bc894df6d1c5c68d9fe1"
+    }
+   ]
+  },
+  {
    "id": "zpaq",
    "url": "https://github.com/zpaq/zpaq",
    "declared": "Public-Domain",
@@ -778,18 +797,6 @@
      "origin": "old/snappy/COPYING.notestdata",
      "bytes": 1475,
      "sha256": "5221a36a801b981fbdfda7b87db64cff231a3b88223a066c325411b539df796f"
-    },
-    {
-     "file": "sources/snappy-LICENSE",
-     "origin": "old/snappy/third_party/benchmark/LICENSE",
-     "bytes": 11358,
-     "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
-    },
-    {
-     "file": "sources/snappy-LICENSE-2",
-     "origin": "old/snappy/third_party/googletest/LICENSE",
-     "bytes": 1475,
-     "sha256": "9702de7e4117a8e2b20dafab11ffda58c198aede066406496bef670d40a22138"
     }
    ]
   },
@@ -992,168 +999,6 @@
      "origin": "old/aqueous/LICENSE.txt",
      "bytes": 1311,
      "sha256": "08232df32d55c08eaa42dacffbbd70bd41995d00e297bdd7478f5e60139c9347"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.7zip.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.7zip.txt",
-     "bytes": 32987,
-     "sha256": "ae18da52adec08ae15104b79d39da5d497335377b30f5eaa758a0a37f415fab0"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.advancecomp-7z.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.advancecomp-7z.txt",
-     "bytes": 27115,
-     "sha256": "5479deab85890120db8763fd31335a208f87b52538a50dbe1645a438e916354e"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.cryptopp.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.cryptopp.txt",
-     "bytes": 4081,
-     "sha256": "7720d05e6033022c6538e17ce9fa54ec001d4ec40eb5d0e8a0f4863fd0b34c4c"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.ect.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.ect.txt",
-     "bytes": 14986,
-     "sha256": "17cc6a73cb58833a2d68bb1d80fc563a977ecbd713678bfb9918f26ad6dbcb82"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.fflate.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.fflate.txt",
-     "bytes": 1113,
-     "sha256": "0c4454fd31a292e87ff1eff02ca20ee41ac865e89dd41634f1831925de0160ac"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.go.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.go.txt",
-     "bytes": 1590,
-     "sha256": "f69c5c1f92e43c0c511220018f87faf142413a280049caeb9a2fed5579f33d40"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.gzip.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.gzip.txt",
-     "bytes": 35230,
-     "sha256": "1aff1236731dc908fa29a4bed7e190d402feddfe51de48aaa8347e35636b4a3c"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.infozip.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.infozip.txt",
-     "bytes": 3494,
-     "sha256": "ef299be5719990b618600fd5d2bed5ab45e04f3129d9e59606299f74ddb46c73"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.isa-l.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.isa-l.txt",
-     "bytes": 1655,
-     "sha256": "0d67b87584dc0e80d483201d3d4105c768c53a7de3ed63389cb13031266ac84c"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.klauspost-compress.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.klauspost-compress.txt",
-     "bytes": 16840,
-     "sha256": "2c26e4955361839a435001433c072821f1a3ffee3e4a7415238f2598e8327cff"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.libdeflate.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.libdeflate.txt",
-     "bytes": 1126,
-     "sha256": "7e1628366d8b3f1b8b8b4dd3ce2fce8eea7e85c835031cc031f52680da70bf36"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.libslz.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.libslz.txt",
-     "bytes": 1479,
-     "sha256": "708a0eb051c6c17527c80e6ad3bad717cc0c314c41b2582de39f02e8e21866d8"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.lodepng.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.lodepng.txt",
-     "bytes": 924,
-     "sha256": "bd5b8dd8b895aed26909b80d1e2d5afdc6dd8a0bf63ca2114b90b78b8e4ccf89"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.miniz.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.miniz.txt",
-     "bytes": 1223,
-     "sha256": "d00e9c562621705ac852114d6f1ecc54766bf9f980a6ebb00f594e4566ae1493"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.pako.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.pako.txt",
-     "bytes": 1153,
-     "sha256": "c13285a48a99de2463e18b881056f845ea93c0299bb483b95fc26a8af54aff0d"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.sdefl.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.sdefl.txt",
-     "bytes": 2766,
-     "sha256": "be09c751d38d02a16c0e864f1fe46ff5a417edee9e58c2b0b3fe4c9c2ccd1224"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.stb.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.stb.txt",
-     "bytes": 2566,
-     "sha256": "fcb7491dbe7676809feb44ef1195f3ab873793ec7e89e58857b46aa7b77cbc68"
-    },
-    {
-     "file": "sources/aqueous-LICENSE-2.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.txt",
-     "bytes": 1458,
-     "sha256": "1ad740e6022f57b7e9a0c0802f8ea44eedf6ce489bab7f0db50f1151c545f27e"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.uzip.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.uzip.txt",
-     "bytes": 1102,
-     "sha256": "85aa01cb0bf13a3bf8f544503a54fbe423ca4e4b85d52ee4fc2817e97a19babe"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.uzlib.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.uzlib.txt",
-     "bytes": 2794,
-     "sha256": "848f5831f9e0740d1762a0beba3d56e92cc35e51aa7a009a4dac63b6571d4126"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.wabt.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.wabt.txt",
-     "bytes": 11439,
-     "sha256": "1e2f9bb4dcd735cdf186243308bc5841313b4d975ac2bbc59241291bd262d039"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zlib-chromium.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zlib-chromium.txt",
-     "bytes": 2758,
-     "sha256": "e6344b7406e9f7c8316bd515acca48e491bfcfb05f31f56de6a17d3d20da995c"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zlib-cloudflare.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zlib-cloudflare.txt",
-     "bytes": 1098,
-     "sha256": "44ed2c14c9b3c0843c68206f9f7bfe6ffa3ef05fb243a78e27512a000214e25c"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zlib-ng.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zlib-ng.txt",
-     "bytes": 942,
-     "sha256": "c02ae2643c43356cdcd8a9c595006fb23c5e0dc7340a293a2ed281e97e0ee811"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zlib.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zlib.txt",
-     "bytes": 1068,
-     "sha256": "6b72e51b0000a6b1ed3f1426d09b381523101795900c4ec8d85c9a1a266ceec8"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zlibjs.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zlibjs.txt",
-     "bytes": 1267,
-     "sha256": "5a93eec7db54d2b7c7c4680ada8e633d36270f290eadaa6e264aa6e4e2107878"
-    },
-    {
-     "file": "sources/aqueous-LICENSE.zopfli.txt",
-     "origin": "old/aqueous/flate-zoo/LICENSE.zopfli.txt",
-     "bytes": 11383,
-     "sha256": "88e9f93da8b80bd69fd1b3aa095488905ca2385f10b810c6fe7f2ce9f11d055d"
     }
    ]
   },
@@ -1298,48 +1143,6 @@
      "origin": "old/upx/LICENSE",
      "bytes": 5448,
      "sha256": "905d4a66d5324e154d976bbf88829d4d9263815a2b97cc40954f06d4a23c28eb"
-    },
-    {
-     "file": "sources/upx-COPYING-2",
-     "origin": "old/upx/vendor/bzip2/COPYING",
-     "bytes": 1895,
-     "sha256": "452871c08826ffb38b1a77960f23ef9c4b8b457887c3a6b691b7d42e882426e3"
-    },
-    {
-     "file": "sources/upx-LICENSE.txt",
-     "origin": "old/upx/vendor/doctest/LICENSE.txt",
-     "bytes": 1086,
-     "sha256": "0fe0b331fa1513dcce8604ff1fa925f32d1cea17d8aeb1c2471fad40d291adc5"
-    },
-    {
-     "file": "sources/upx-LICENSE-2.txt",
-     "origin": "old/upx/vendor/lzma-sdk/LICENSE.txt",
-     "bytes": 186,
-     "sha256": "546d61821ef504fdec684a341f22b52a29664c34f74a6eef773425da99ab2992"
-    },
-    {
-     "file": "sources/upx-COPYING-3",
-     "origin": "old/upx/vendor/ucl/COPYING",
-     "bytes": 18089,
-     "sha256": "c8d9ddbae4613dae85ce3e88f665ced245126887792ec2b91478754254f8f487"
-    },
-    {
-     "file": "sources/upx-COPYING-4",
-     "origin": "old/upx/vendor/valgrind/COPYING",
-     "bytes": 18092,
-     "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
-    },
-    {
-     "file": "sources/upx-LICENSE-2",
-     "origin": "old/upx/vendor/zlib/LICENSE",
-     "bytes": 1002,
-     "sha256": "0f854f426019c475697e17f1b0fa638270f6e700bc756d9bfe50d17268bd3281"
-    },
-    {
-     "file": "sources/upx-LICENSE-3",
-     "origin": "old/upx/vendor/zstd/LICENSE",
-     "bytes": 1549,
-     "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
     }
    ]
   },
@@ -1387,21 +1190,9 @@
     },
     {
      "file": "sources/tamp-LICENSE.txt",
-     "origin": "old/tamp/ctests/Unity/LICENSE.txt",
-     "bytes": 1123,
-     "sha256": "3b5e78b46728ecb293c4eec380114ed013ffb5f284d2762a0338610df779e275"
-    },
-    {
-     "file": "sources/tamp-LICENSE-2.txt",
      "origin": "old/tamp/ctests/fatfs/LICENSE.txt",
      "bytes": 1937,
      "sha256": "2576183a3e1c2d2f4b3628a7ef93c2f937879698abdd6d554dd718e79062e079"
-    },
-    {
-     "file": "sources/tamp-LICENSE.md",
-     "origin": "old/tamp/ctests/littlefs/LICENSE.md",
-     "bytes": 1523,
-     "sha256": "0cb4ff1daf5fdc1359c6a6ee3116092f08fc100c9d58b1b77ab17bfd801f856d"
     },
     {
      "file": "sources/tamp-LICENSE-APACHE-2",
