@@ -46,7 +46,7 @@ Columns:
 | lzham | https://github.com/richgel999/lzham_codec | d379b1f9121e2197881c61cfc4713c78848bdfe7 | MIT | link |
 | freearc-c | https://github.com/seb3773/freearc-c | copy | GPL-2.0 | copy-src |
 | freearc-main | https://github.com/Bulat-Ziganshin/FA | copy | mixed | reference |
-| FA-master | https://github.com/Bulat-Ziganshin/FA | copy | mixed | reference |
+| FA-master | https://github.com/Bulat-Ziganshin/FA | d56aeb4e6231a73f3715d5d9adbe8ce5a26cb055 | mixed | reference |
 
 ## Context-Mixing
 
@@ -172,7 +172,7 @@ A copied tree carries no git history, so its upstream commit was not recorded. W
 | `xz` | 5.8.4 | `v5.8.4` | `d3e650e63c11` | `old/xz-master/src/liblzma/api/lzma/version.h` |
 | `zpaq` | 7.15 | `7.15` | `9ab539f644e3` | `old/zpaq-master/zpaq.cpp` |
 
-These stay `copy`, with the reason: `zstd` states 1.6.0 and `lz4` states 1.10.1, and neither has a tag of that name — the copied trees are ahead of the last release, and a pin to the previous tag would be a claim the tree contradicts. `advancecomp`'s `configure.ac` reads `AC_INIT([AdvanceCOMP], [git_revision], ...)`, which is a placeholder, not a version. `zopfli`, `packJPG`, `precomp-cpp`, `bitshuffle`, `parmar`, `zlib-ng`, `freearc-c`, `freearc-main`, `FA-master`, `srep`, `LPAQ9`, `BARF`, `BBB`, `FLZP`, `FPAQF2` and `SR3A` state no version in a file this vault can read.
+These stay `copy`, with the reason: `zstd` states 1.6.0 and `lz4` states 1.10.1, and neither has a tag of that name — the copied trees are ahead of the last release, and a pin to the previous tag would be a claim the tree contradicts. `advancecomp`'s `configure.ac` reads `AC_INIT([AdvanceCOMP], [git_revision], ...)`, which is a placeholder, not a version. `zopfli`, `packJPG`, `precomp-cpp`, `bitshuffle`, `parmar`, `zlib-ng`, `freearc-c`, `freearc-main`, `srep`, `LPAQ9`, `BARF`, `BBB`, `FLZP`, `FPAQF2` and `SR3A` state no version in a file this vault can read.
 
 ## Submodule entries
 
