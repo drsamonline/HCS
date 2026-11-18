@@ -151,13 +151,43 @@ Columns:
 |---|---|---|---|---|
 | csc | https://github.com/fusiyuan2010/CSC | unvendored | verify | link |
 | lzo | https://github.com/nemequ/lzo | copy | GPL+commercial | external-process |
+| bzip2 | https://github.com/libarchive/bzip2 | unvendored | bzip2-1.0.6 | link |
+| lrzip | https://github.com/ckolivas/lrzip | unvendored | GPL-2.0 | external-process |
+| blosc2 | https://github.com/Blosc/c-blosc2 | unvendored | BSD-2-Clause | link |
+| libarchive | https://github.com/libarchive/libarchive | unvendored | BSD-2-Clause | link |
+| 7zip-cli | https://github.com/ip7z/7zip | unvendored | LGPL-2.1+unRAR | external-process |
+
+The last five were added 2026-11-18 after checking fifty codec and archive
+repositories (`audit/docs/codec-repos-survey-2026-11-18.md`). Licences were read,
+not assumed:
+
+- **bzip2** — the classic 1.0.6 licence: two redistribution clauses plus the
+  "cannot be misrepresented as being the original software" clause. SPDX
+  `bzip2-1.0.6`. The vault had **no bzip2 row at all** until now, which is why
+  `bzip2` appearing in a consumer's dependency list was previously unchecked.
+- **lrzip** — GPL-2.0, so `external-process` only. It is here for one reason:
+  long-range matching, which a fixed block size cannot do.
+- **blosc2** — **BSD-2-Clause**, confirmed by counting the redistribution clauses
+  in `LICENSE.txt` (two, not three). Linkable. Its **filters** (shuffle,
+  bitshuffle, delta) are the reference for the SQLite column transform.
+- **libarchive** — BSD-2-Clause, likewise confirmed from `COPYING`. The format
+  coverage reference: it reads tar/cpio/ar/iso/zip and **does not** read 7z or
+  RAR, which is why a consumer needs the row below as well.
+- **7zip-cli** — LGPL-2.1 **with the unRAR restriction**, so `external-process`
+  and never linked. It is the reference implementation for the formats
+  heavenzip shells out to.
 
 Clone them with:
 
 ```bash
 git clone --depth=1 https://github.com/fusiyuan2010/CSC.git old/csc
 git clone --depth=1 https://github.com/nemequ/lzo.git        old/lzo
-rm -rf old/csc/.git old/lzo/.git
+git clone --depth=1 https://github.com/libarchive/bzip2.git  old/bzip2
+git clone --depth=1 https://github.com/ckolivas/lrzip.git    old/lrzip
+git clone --depth=1 https://github.com/Blosc/c-blosc2.git    old/blosc2
+git clone --depth=1 https://github.com/libarchive/libarchive.git old/libarchive
+git clone --depth=1 https://github.com/ip7z/7zip.git         old/7zip-cli
+rm -rf old/csc/.git old/lzo/.git old/bzip2/.git old/lrzip/.git old/blosc2/.git old/libarchive/.git old/7zip-cli/.git
 
 ---
 
