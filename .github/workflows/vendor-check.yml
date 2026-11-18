@@ -43,6 +43,20 @@ jobs:
         # notice edited or deleted without the record moving fails here.
         run: python3 tools/check-licences.py
 
+      - name: SOURCES must describe old/
+        # The manifest is what consumers read, and nothing proved it matched the tree until
+        # this step existed: an id could resolve to nothing, a directory could have no row,
+        # and the same id could appear twice.
+        run: python3 tools/check-sources.py
+
+      - name: The glue a consumer compiles must still compile
+        # `check-sources.py` proves the manifest describes the tree. It cannot tell you the
+        # tree builds — and on 2026-11-17 that cost a broken sync: the brunsli glue called a
+        # 3-argument BrunsliEncodeJpeg while the header beside it declares four. Nothing in
+        # this repo compiled anything, so the vault described itself perfectly and could not
+        # be built. Syntax-only, on the entry points listed in tools/compile-check.txt.
+        run: python3 tools/check-sources.py --compile
+
       - name: Report what is present
         if: always()
         run: |

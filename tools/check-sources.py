@@ -92,11 +92,88 @@ def resolve_all(rows, dirs):
     return resolved, [d for d in dirs if d not in claimed]
 
 
+# ---- compile check -------------------------------------------------------------------
+#
+# `--compile` syntax-checks the entry points listed in `tools/compile-check.txt` with the
+# compiler on PATH. It exists because on 2026-11-17 this vault described itself perfectly and
+# still could not be built: the brunsli glue called a 3-argument BrunsliEncodeJpeg while the
+# header beside it declares four. Nothing in this repo compiles anything, so a copied tree can
+# sit broken indefinitely and be discovered by whoever syncs it next.
+
+COMPILE_LIST = os.path.join(ROOT, "tools", "compile-check.txt")
+COMPILERS = ("c++", "g++", "clang++")
+
+
+def find_compiler():
+    for name in COMPILERS:
+        for path in os.environ.get("PATH", "").split(os.pathsep):
+            cand = os.path.join(path, name)
+            if os.path.isfile(cand) and os.access(cand, os.X_OK):
+                return cand
+    return None
+
+
+def compile_entries():
+    """(path, include_dirs) pairs from the list file, comments and blanks skipped."""
+    entries = []
+    if not os.path.exists(COMPILE_LIST):
+        return entries
+    with open(COMPILE_LIST, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            path, _, incs = line.partition("|")
+            entries.append((path.strip(), [i for i in incs.strip().split(":") if i]))
+    return entries
+
+
+def run_compile_check():
+    """0 if every entry point agrees with its headers, 1 otherwise."""
+    entries = compile_entries()
+    if not entries:
+        print("compile-check: tools/compile-check.txt lists no entry points")
+        return 0
+    compiler = find_compiler()
+    if compiler is None:
+        # Not a failure: this must be runnable on a machine without a toolchain, and a
+        # check that fails for want of a compiler teaches people to ignore it.
+        print("compile-check: no C++ compiler on PATH — skipped, %d entry point(s) unverified"
+              % len(entries))
+        return 0
+
+    import subprocess
+
+    failed = 0
+    for path, incs in entries:
+        if not os.path.exists(os.path.join(ROOT, path)):
+            print("compile-check: MISSING  %s" % path)
+            failed += 1
+            continue
+        cmd = [compiler, "-std=c++17", "-fsyntax-only"]
+        for inc in incs:
+            cmd += ["-I", os.path.join(ROOT, inc)]
+        cmd.append(os.path.join(ROOT, path))
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        if proc.returncode == 0:
+            print("compile-check: ok       %s" % path)
+        else:
+            failed += 1
+            print("compile-check: FAILED   %s" % path)
+            for line in proc.stderr.strip().splitlines()[:6]:
+                print("    %s" % line)
+    return 1 if failed else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--advisory", action="store_true",
                     help="report problems but exit 0 (for a tree that is not repaired yet)")
+    ap.add_argument("--compile", action="store_true",
+                    help="also syntax-check the glue entry points in tools/compile-check.txt")
     args = ap.parse_args()
+
+    compile_rc = run_compile_check() if args.compile else 0
 
     if not os.path.isdir(VENDOR):
         print("FAIL: no old/ directory — wrong working directory?", file=sys.stderr)
@@ -143,13 +220,13 @@ def main():
     print(f"SOURCES rows: {len(rows)} ({len(enforced)} enforced), old/ directories: {len(dirs)}")
     if not problems:
         print("sources OK: every directory is recorded and every recorded id resolves")
-        return 0
+        return 1 if compile_rc else 0
     for p in problems:
         print("  " + p)
     print(f"\n{len(problems)} problem(s).")
     if args.advisory:
         print("advisory: not failing the build")
-        return 0
+        return 1 if compile_rc else 0
     return 1
 
 

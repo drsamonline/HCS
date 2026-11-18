@@ -1,0 +1,16 @@
+# Glue entry points — files a consumer actually compiles out of `old/`.
+#
+# `check-sources.py` proves the manifest describes the tree. It cannot tell you whether the
+# tree *builds*, and on 2026-11-17 that cost a broken sync: the brunsli glue in
+# `old/precomp-cpp-master/contrib/brunsli/c/enc/encode.cc` called the 3-argument
+# `BrunsliEncodeJpeg` while the library beside it defines four, so the vault described itself
+# correctly and still could not be built by the project that vendors it.
+#
+# One line per entry point: `path | include-dirs`, relative to the repo root, `:`-separated.
+# Syntax-only — this checks that the code *agrees with its own headers*, which is the failure
+# that happened. It does not link, and it is not a build.
+#
+# Add a line when a consumer starts compiling something out of `old/`.
+
+old/precomp-cpp-master/contrib/brunsli/c/enc/encode.cc | old/precomp-cpp-master/contrib/brunsli/c/include
+old/precomp-cpp-master/contrib/brunsli/c/dec/decode.cc | old/precomp-cpp-master/contrib/brunsli/c/include
